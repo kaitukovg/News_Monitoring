@@ -35,7 +35,7 @@ CATEGORY_ID = {name: i for i, name in enumerate(all_category, start=1)}
 DEFAULT_CATEGORY_ID = CATEGORY_ID["Без категории"]
 
 DEFAULT_UNIVERSITY = "КФУ"
-DEFAULT_UNIVERSITY_ID = 1
+DEFAULT_UNIVERSITY_ID = 7
 
 
 def init_db(name_bd=DB_NAME):
@@ -98,12 +98,20 @@ def get_key_to_category():
 
 
 def get_university_id(cursor, name=DEFAULT_UNIVERSITY):
-    cursor.execute('SELECT university_id FROM universities WHERE name = ?', (name,))
+    cursor.execute(
+        "SELECT university_id FROM universities WHERE name = ?",
+        (name,)
+    )
     row = cursor.fetchone()
+
     if row:
         return row[0]
-    cursor.execute('INSERT INTO universities (name) VALUES (?)', (name,))
-    return cursor.lastrowid
+
+    cursor.execute(
+        "INSERT INTO universities (university_id, name) VALUES (?, ?)",
+        (DEFAULT_UNIVERSITY_ID, name)
+    )
+    return DEFAULT_UNIVERSITY_ID
 
 
 def fetch_html(url):
