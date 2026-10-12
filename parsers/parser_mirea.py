@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 from datetime import datetime
-from news_monitoring import db_functions as db
+import db_functions as db
 
 
 def normalise_category(input_cat):
