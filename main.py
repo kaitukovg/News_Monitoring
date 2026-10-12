@@ -98,7 +98,6 @@ def create_send_list(config, last_run):
 def main():
     config = load_config()
 
-    # Инициализируем базы один раз при старте
     create_database(config)
 
     parsers = load_parsers(config["parsers_dir"])
