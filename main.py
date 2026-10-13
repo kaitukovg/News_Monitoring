@@ -116,7 +116,9 @@ def main():
 
             for parser in parsers:
                 try:
+                    print(f"Запускается парсер новостей {parser.__name__[15:].upper()}")
                     parser.parse()
+                    print(f"Парсер новостей {parser.__name__[15:].upper()} завершен")
                 except Exception as e:
                     logging.error(f"Парсер {parser.__name__} упал: {e}")
 
